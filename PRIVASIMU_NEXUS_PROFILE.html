@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privasimu Nexus — Company Profile</title>
+<style>
+  :root {
+    --ink: #0b1b2b;
+    --ink-soft: #3d4a5c;
+    --muted: #6b7a8c;
+    --line: #e4e9ef;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --primary: #1a4d8c;
+    --primary-soft: #2e6fb8;
+    --accent: #16b8a6;
+    --accent-soft: #a8e8e0;
+    --warn: #d97706;
+    --danger: #dc2626;
+    --ok: #059669;
+    --gold: #b08a3e;
+    --radius: 14px;
+    --radius-lg: 20px;
+    --shadow: 0 2px 14px rgba(16, 36, 60, 0.06);
+    --shadow-lg: 0 10px 30px rgba(16, 36, 60, 0.10);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    max-width: 1360px;
+    margin: 0 auto;
+    gap: 32px;
+    padding: 32px;
+  }
+
+  /* ===== Sidebar TOC ===== */
+  aside.toc {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 18px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+  }
+  .toc-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--primary);
+    letter-spacing: 0.3px;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .toc-brand .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  }
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc;
+  }
+  .toc ol li {
+    counter-increment: toc;
+    margin: 0;
+  }
+  .toc ol li a {
+    display: block;
+    padding: 8px 10px 8px 32px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-radius: 8px;
+    position: relative;
+    transition: background 0.15s, color 0.15s;
+  }
+  .toc ol li a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.7;
+  }
+  .toc ol li a:hover {
+    background: rgba(26, 77, 140, 0.06);
+    color: var(--primary);
+  }
+
+  /* ===== Main content ===== */
+  main {
+    min-width: 0;
+  }
+
+  /* ===== Cover / Hero ===== */
+  .hero {
+    background: linear-gradient(135deg, #0b2e5c 0%, #1a4d8c 45%, #16b8a6 100%);
+    color: #fff;
+    padding: 56px 48px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 0 0 14px 0;
+    line-height: 1.1;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0.95;
+    margin: 0 0 28px 0;
+    max-width: 680px;
+  }
+  .hero .lede {
+    font-size: 15px;
+    opacity: 0.92;
+    line-height: 1.7;
+    max-width: 760px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== Section ===== */
+  section.s {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 40px 44px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    scroll-margin-top: 24px;
+  }
+  section.s h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--line);
+    letter-spacing: -0.3px;
+  }
+  section.s h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  section.s h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 28px 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.s h3 .code {
+    font-size: 12px;
+    background: var(--accent-soft);
+    color: #0e6a5e;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  section.s p {
+    margin: 8px 0 14px 0;
+    color: var(--ink-soft);
+  }
+  section.s ul {
+    padding-left: 0;
+    list-style: none;
+    margin: 12px 0;
+  }
+  section.s ul li {
+    position: relative;
+    padding: 6px 0 6px 26px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  section.s ul li::before {
+    content: "";
+    position: absolute;
+    left: 4px; top: 13px;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    transform: rotate(45deg);
+  }
+  section.s ul li strong {
+    color: var(--ink);
+  }
+
+  /* ===== Executive Summary Table ===== */
+  .exec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  .exec-table th, .exec-table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  .exec-table tr:last-child td { border-bottom: none; }
+  .exec-table th {
+    background: #f0f4f9;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    width: 30%;
+  }
+  .exec-table td {
+    background: #fff;
+    color: var(--ink-soft);
+  }
+  .exec-table tr:nth-child(even) td { background: #fbfcfe; }
+
+  /* ===== Competitive advantages grid ===== */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .pillar {
+    background: linear-gradient(135deg, #ffffff 0%, #f6f8fb 100%);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .pillar h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 6px 0;
+  }
+  .pillar p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ===== Module cards ===== */
+  .modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .module {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    background: #fff;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .module:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-soft);
+  }
+  .module-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .module-head .title {
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 15px;
+  }
+  .module-head .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .badge-core { background: #e0f2fe; color: #0369a1; }
+  .badge-ai { background: #fef3c7; color: #92400e; }
+  .badge-new { background: #dcfce7; color: #166534; }
+
+  /* ===== Pill tags ===== */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .tag {
+    background: #f0f4f9;
+    color: var(--ink-soft);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  /* ===== Persona table ===== */
+  .persona-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 14px;
+  }
+  .persona-table th, .persona-table td {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .persona-table thead th {
+    background: var(--primary);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .persona-table thead th:first-child { border-top-left-radius: 10px; }
+  .persona-table thead th:last-child { border-top-right-radius: 10px; }
+  .persona-table tbody tr:nth-child(odd) td { background: #f6f8fb; }
+  .persona-table tbody tr:nth-child(even) td { background: #fff; }
+  .persona-table td:first-child {
+    font-weight: 700;
+    color: var(--primary);
+    width: 26%;
+  }
+  .persona-table tbody tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+  .persona-table tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+
+  /* ===== Roadmap ===== */
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .milestone {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: #fbfcfe;
+    border-radius: 10px;
+    border-left: 4px solid var(--line);
+  }
+  .milestone.shipped { border-left-color: var(--ok); background: #ecfdf5; }
+  .milestone.planning { border-left-color: var(--warn); background: #fffbeb; }
+  .milestone.future { border-left-color: var(--muted); }
+  .milestone .stat {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    min-width: 90px;
+    text-align: center;
+  }
+  .milestone.shipped .stat { background: var(--ok); color: #fff; }
+  .milestone.planning .stat { background: var(--warn); color: #fff; }
+  .milestone.future .stat { background: var(--muted); color: #fff; }
+  .milestone .text {
+    flex: 1;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .milestone .text strong { color: var(--ink); }
+
+  /* ===== Callout ===== */
+  .callout {
+    background: linear-gradient(135deg, #eff6ff 0%, #ecfdf5 100%);
+    border: 1px solid var(--accent-soft);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 20px 0;
+    position: relative;
+  }
+  .callout::before {
+    content: "★";
+    position: absolute;
+    left: 16px; top: 16px;
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .callout p {
+    margin: 0 0 0 28px;
+    color: var(--ink);
+    font-size: 14px;
+  }
+
+  /* ===== Contact / footer ===== */
+  .contact-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    background: linear-gradient(135deg, #0b2e5c 0%, #1a4d8c 100%);
+    color: #fff;
+    padding: 32px 36px;
+    border-radius: var(--radius-lg);
+    margin-top: 28px;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .contact-item .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .contact-item .value {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .footnote {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 28px 0 8px 0;
+    font-style: italic;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 980px) {
+    .layout {
+      grid-template-columns: 1fr;
+      padding: 16px;
+      gap: 20px;
+    }
+    aside.toc { display: none; }
+    .hero { padding: 36px 24px; }
+    .hero h1 { font-size: 30px; }
+    section.s { padding: 28px 22px; }
+  }
+
+  /* ===== Print ===== */
+  @media print {
+    body { background: #fff; }
+    .layout { grid-template-columns: 1fr; padding: 0; gap: 0; max-width: 100%; }
+    aside.toc { display: none; }
+    .hero, section.s, .contact-card {
+      break-inside: avoid;
+      box-shadow: none;
+      border: 1px solid var(--line);
+    }
+    section.s { page-break-inside: avoid; }
+    .module { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<aside class="toc">
+  <div class="toc-brand">
+    <span class="dot"></span>
+    PRIVASIMU NEXUS
+  </div>
+  <ol>
+    <li><a href="#exec">Ringkasan Eksekutif</a></li>
+    <li><a href="#edge">Keunggulan Kompetitif</a></li>
+    <li><a href="#assessment">Assessment Engine</a></li>
+    <li><a href="#dsr-consent">Hak Subjek & Consent</a></li>
+    <li><a href="#incident">Incident Response</a></li>
+    <li><a href="#vendor">Vendor Risk</a></li>
+    <li><a href="#discovery">Data Discovery</a></li>
+    <li><a href="#ai">AI Features</a></li>
+    <li><a href="#docs">Dokumentasi & Templating</a></li>
+    <li><a href="#admin">Administrasi Platform</a></li>
+    <li><a href="#enterprise">Fitur Enterprise</a></li>
+    <li><a href="#arch">Arsitektur Teknis</a></li>
+    <li><a href="#persona">Persona Pengguna</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ol>
+</aside>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <span class="eyebrow">Company Profile · 2026</span>
+    <h1>Privasimu Nexus</h1>
+    <p class="subtitle">Platform Kepatuhan UU PDP Indonesia — End-to-End, AI-Powered, Multi-Tenant SaaS</p>
+    <p class="lede">
+      Privasimu Nexus adalah platform manajemen kepatuhan Undang-Undang Pelindungan Data Pribadi (UU No. 27 Tahun 2022) yang menyatukan seluruh kebutuhan Data Protection Officer, tim Legal, Compliance, dan IT-Security dalam satu workspace terintegrasi. Dibangun cloud-native untuk organisasi yang punya ribuan subjek data, puluhan sistem informasi, dan regulasi yang tidak berhenti berubah.
+    </p>
+  </div>
+
+  <!-- ===== 1. EXEC SUMMARY ===== -->
+  <section class="s" id="exec">
+    <h2><span class="num">01</span> Ringkasan Eksekutif</h2>
+    <table class="exec-table">
+      <tr><th>Target Pasar</th><td>Bank, BPR, fintech, rumah sakit, asuransi, telco, e-commerce, BUMN, instansi pemerintah</td></tr>
+      <tr><th>Kepatuhan Utama</th><td>UU PDP (UU 27/2022), POJK, KOMDIGI, ISO 27701, GDPR (ekstensi opsional)</td></tr>
+      <tr><th>Model Deployment</th><td>SaaS multi-tenant · Self-hosted (Docker) · Hybrid</td></tr>
+      <tr><th>Lisensi</th><td>Basic · Professional · AI · AI Agent · Enterprise Perpetual</td></tr>
+      <tr><th>Stack</th><td>Laravel 12 (PHP 8.3) · Next.js 16 · React 19 · PostgreSQL/MySQL · Redis</td></tr>
+      <tr><th>Integrasi</th><td>Telegram · WhatsApp · Email · SIEM · CRM (HubSpot/Salesforce) · SSO (SAML/OIDC)</td></tr>
+    </table>
+  </section>
+
+  <!-- ===== 2. COMPETITIVE EDGE ===== -->
+  <section class="s" id="edge">
+    <h2><span class="num">02</span> Keunggulan Kompetitif</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <h4>🏛️ UU PDP End-to-End</h4>
+        <p>Satu-satunya platform di Indonesia yang menyatukan ROPA, DPIA, GAP, DSR, Data Breach, Consent, Vendor Risk, dan Data Discovery dalam satu panel.</p>
+      </div>
+      <div class="pillar">
+        <h4>🤖 AI-First Workflow</h4>
+        <p>AI Agent dengan function calling — generate ROPA/DPIA otomatis, auto-remediation untuk gap assessment, AI contract & policy review.</p>
+      </div>
+      <div class="pillar">
+        <h4>🔒 Multi-Tenant Ketat</h4>
+        <p>Isolasi <code>org_id</code> enforced di setiap query. AES-256-CBC encryption untuk PII dan credential. Per-tenant cloud storage (S3/MinIO/GCS).</p>
+      </div>
+      <div class="pillar">
+        <h4>🎨 White-Label Ready</h4>
+        <p>Template dokumen, palet warna, logo, domain, email sender — semua bisa dikustomisasi per-tenant.</p>
+      </div>
+      <div class="pillar">
+        <h4>🏦 Aman untuk Bank</h4>
+        <p>Generate-only SQL pattern — platform tidak pernah menyentuh data produksi klien. Semua deletion/correction/access via SQL generator yang admin bank jalankan sendiri. Zero credential DB disimpan.</p>
+      </div>
+      <div class="pillar">
+        <h4>🏢 Holding Support</h4>
+        <p>Struktur induk-anak perusahaan dengan cross-tenant aggregated dashboard untuk conglomerate.</p>
+      </div>
+      <div class="pillar">
+        <h4>⚙️ Production-Grade</h4>
+        <p>72+ migrasi schema battle-tested. Bukan tech demo — sudah dipakai tenant live.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. ASSESSMENT ENGINE ===== -->
+  <section class="s" id="assessment">
+    <h2><span class="num">03</span> Modul Penilaian Kepatuhan (Assessment Engine)</h2>
+    <p>Fondasi platform. Setiap organisasi UU PDP wajib punya ROPA, dan bila risk tinggi wajib DPIA. Platform kami mengotomasi seluruh alur wizard + scoring + export.</p>
+
+    <div class="modules">
+      <div class="module">
+        <div class="module-head">
+          <span class="title">ROPA</span>
+          <span class="badge badge-core">Core</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Records of Processing Activities — kewajiban inti Pasal 31 UU PDP.</p>
+        <ul>
+          <li><strong>Wizard 7 langkah</strong> sinkron format KOMDIGI</li>
+          <li><strong>Risk Level otomatis</strong> dari 8 trigger wizard</li>
+          <li><strong>Multi-DPO / PIC / System</strong> per 1 ROPA</li>
+          <li><strong>Master Data Retensi</strong> reusable per tenant</li>
+          <li><strong>Auto-trigger DPIA</strong> saat risk HIGH</li>
+          <li><strong>Approval Workflow</strong> multi-level</li>
+          <li><strong>Export PDF + DOCX</strong> canonical/custom</li>
+          <li><strong>AI Auto-Fill</strong> 7 section dari 1 deskripsi</li>
+          <li><strong>Version Diff Viewer</strong> untuk audit</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">DPIA</span>
+          <span class="badge badge-core">Core</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Data Protection Impact Assessment — Pasal 34 UU PDP.</p>
+        <ul>
+          <li><strong>21 kategori risiko</strong> wajib</li>
+          <li><strong>Risk Matrix 5×5</strong> color-coded</li>
+          <li><strong>Event Templates</strong> per kategori</li>
+          <li><strong>Linkage ROPA</strong> cascade high-risk</li>
+          <li><strong>AI Auto-Fill DPIA</strong></li>
+          <li><strong>Export PDF + DOCX</strong> dengan risk matrix visual</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">GAP Assessment</span>
+          <span class="badge badge-core">Core</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Audit kepatuhan berbasis indikator UU PDP.</p>
+        <ul>
+          <li><strong>33 pertanyaan UU PDP resmi</strong></li>
+          <li><strong>Custom Questions</strong> per tenant</li>
+          <li><strong>Multi-Regulation</strong>: UU PDP, GDPR, PDPA, ISO 27701</li>
+          <li><strong>Evidence Upload</strong> per-question</li>
+          <li><strong>Radar + Trend chart</strong></li>
+          <li><strong>Benchmark industri</strong></li>
+          <li><strong>AI Remediation Plan</strong> prioritas UU PDP</li>
+          <li><strong>Export PDF + DOCX</strong> dengan rekomendasi</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">LIA</span>
+          <span class="badge badge-core">Core</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Legitimate Interest Assessment — Pasal 20(1)(f).</p>
+        <ul>
+          <li><strong>3-step balancing test</strong>: Purpose → Necessity → Balancing</li>
+          <li><strong>Template pre-filled</strong> untuk fraud detection, direct marketing, HR analytics</li>
+          <li><strong>Export PDF</strong> dokumentasi akuntabilitas</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">TIA</span>
+          <span class="badge badge-core">Core</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Transfer Impact Assessment — Pasal 56.</p>
+        <ul>
+          <li><strong>Country risk scoring</strong> otomatis</li>
+          <li><strong>Safeguards library</strong>: SCC, BCR, adequacy decisions</li>
+          <li><strong>Linkage ROPA</strong> yang transfer internasional</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">Maturity Assessment</span>
+          <span class="badge badge-new">Executive</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Evaluasi tingkat kedewasaan program privasi.</p>
+        <ul>
+          <li><strong>5 level maturity</strong>: Initial → Developing → Defined → Managed → Optimized</li>
+          <li><strong>Domain coverage</strong>: Governance, Policy, Awareness, Technology, IR</li>
+          <li><strong>Executive report</strong> untuk presentasi Board</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. DSR & CONSENT ===== -->
+  <section class="s" id="dsr-consent">
+    <h2><span class="num">04</span> Hak Subjek Data & Consent</h2>
+
+    <h3>DSR — Data Subject Rights Management <span class="code">PASAL 5–8</span></h3>
+    <p>Alur permintaan hak subjek data: akses, koreksi, penghapusan, portabilitas, penarikan consent, keberatan, info.</p>
+    <ul>
+      <li><strong>72-jam SLA countdown</strong> sesuai Pasal 32 dengan auto-alert ke DPO</li>
+      <li><strong>Multi-channel intake</strong>: manual entry, web embed form, email intake (IMAP)</li>
+      <li><strong>7 tipe request</strong>: Access, Correction, Deletion, Portability, Withdraw Consent, Objection, Information</li>
+      <li><strong>Identity verification</strong> via email OTP</li>
+      <li><strong>Scope picker</strong> — pilih Information System yang kena impact</li>
+      <li><strong>SQL Generator (upcoming)</strong> — platform generate SQL SELECT/UPDATE/DELETE; admin bank eksekusi sendiri</li>
+      <li><strong>Execution Log</strong> per-system dengan upload bukti</li>
+      <li><strong>Completion Certificate</strong> auto-generate PDF signed DPO</li>
+    </ul>
+
+    <h3>Consent Management <span class="code">PASAL 22–25</span></h3>
+    <ul>
+      <li><strong>Collection Points</strong> — tiap touchpoint (web, app, in-store) dengan kode unik</li>
+      <li><strong>Consent Records</strong> — track per-subjek lengkap dengan bukti IP/user-agent</li>
+      <li><strong>Preference Center</strong> publik — subjek review + withdraw sendiri</li>
+      <li><strong>Consent Editor Embed</strong> — iframe untuk website client</li>
+      <li><strong>Consent Version History</strong> — audit trail perubahan T&C</li>
+      <li><strong>Withdrawal Propagation</strong> — auto-flag ROPA + CRM linked</li>
+    </ul>
+
+    <h3>Cross-Border Transfer <span class="code">PASAL 56</span></h3>
+    <ul>
+      <li><strong>Transfer log</strong> per-ROPA</li>
+      <li><strong>Safeguard attachment</strong>: SCC, BCR, konsen eksplisit</li>
+      <li><strong>Country adequacy</strong> status cek otomatis</li>
+    </ul>
+  </section>
+
+  <!-- ===== 5. INCIDENT ===== -->
+  <section class="s" id="incident">
+    <h2><span class="num">05</span> Incident Response & Simulation</h2>
+
+    <h3>Data Breach Management <span class="code">PASAL 46</span></h3>
+    <ul>
+      <li><strong>15 SOP containment templates</strong>: Ransomware, Phishing, Unauthorized Access, Insider Threat, DDoS, Data Leak, Misconfiguration, Physical Loss, Supply Chain, Cloud Breach, Malware, Social Engineering, Cryptojacking, Brute Force, Other</li>
+      <li><strong>Containment Checklist</strong> adaptif per case type dengan evidence upload + assignee</li>
+      <li><strong>RACI Matrix editable per-breach</strong> — fully customizable role & cell (R/A/C/I)</li>
+      <li><strong>RACI Templates library</strong> — reusable presets</li>
+      <li><strong>72-jam KOMDIGI countdown</strong> dengan auto-escalation</li>
+      <li><strong>Subject notification template</strong> — email siap kirim, anti-churn</li>
+      <li><strong>PDF document pack</strong>: Surat Notifikasi KOMDIGI, Himbauan Subjek, Full Breach Report</li>
+      <li><strong>Multi-ROPA linkage</strong> — 1 breach bisa reference banyak ROPA</li>
+      <li><strong>Telegram & WhatsApp alert</strong> real-time</li>
+    </ul>
+
+    <h3>Breach Simulation (Drill)</h3>
+    <ul>
+      <li><strong>10+ skenario</strong>: ransomware, insider, supply chain, dst</li>
+      <li><strong>Mode tabletop atau full drill</strong> dengan timer</li>
+      <li><strong>Scoring per-role</strong> — evaluasi response time + RACI</li>
+      <li><strong>After Action Report</strong> untuk perbaikan SOP</li>
+    </ul>
+  </section>
+
+  <!-- ===== 6. VENDOR RISK ===== -->
+  <section class="s" id="vendor">
+    <h2><span class="num">06</span> Vendor & Third Party Risk Management</h2>
+    <ul>
+      <li><strong>Vendor registry</strong> dengan dokumen kontrak (DPA, MSA, NDA)</li>
+      <li><strong>Assessment questionnaire</strong> — 50+ pertanyaan default, customizable</li>
+      <li><strong>Risk scoring per-vendor</strong></li>
+      <li><strong>AI Document Screening</strong> — AI parse DPA, summarize klausul kritis (liability, data residency, audit rights)</li>
+      <li><strong>Periodic reassessment reminder</strong> otomatis</li>
+      <li><strong>Link ke ROPA</strong> yang vendor terlibat</li>
+    </ul>
+  </section>
+
+  <!-- ===== 7. DATA DISCOVERY ===== -->
+  <section class="s" id="discovery">
+    <h2><span class="num">07</span> Data Discovery & Inventory</h2>
+
+    <h3>PII Scanner & Schema Registry</h3>
+    <div class="callout">
+      <p><strong>Two-Mode Architecture</strong> — platform mengakomodasi baik organisasi yang terbuka dengan scan langsung, maupun bank yang no-third-party-DB-access.</p>
+    </div>
+    <ul>
+      <li><strong>Live Scan Mode</strong> (self-hosted/SaaS trusted) — connect MySQL/PostgreSQL/MongoDB, discover schema, classify PII per column, sample-scan pattern detection</li>
+      <li><strong>Generate-Only Mode</strong> (bank) — admin register schema manual atau import DDL; platform zero koneksi DB; pure SQL generator untuk DSR</li>
+      <li><strong>Split/Sharded DB Support</strong> — 1 logical system bisa punya N physical shards (30M customer bank di 4 server); schema sekali, shards metadata saja</li>
+      <li><strong>PII auto-detect</strong>: NIK, NPWP, Email, Telepon, Alamat, Rekening, IP, Cookie, Health, Biometric, Anak, Agama, Politik, Orientasi Seksual</li>
+      <li><strong>Classification Engine</strong> — pattern + context analysis</li>
+      <li><strong>OCR Scanner</strong> — upload dokumen physical (KTP scan, form fisik) untuk PII extract</li>
+      <li><strong>Changelog</strong> — drift detection antar scan</li>
+      <li><strong>Integrasi ROPA wizard</strong> — populasikan otomatis "jenis data dikumpulkan"</li>
+    </ul>
+
+    <h3>Data Posture Score</h3>
+    <ul>
+      <li><strong>Unified score</strong> agregasi: ROPA coverage, DPIA completion, GAP score, DSR SLA, Breach history, Vendor risk</li>
+      <li><strong>Per-area drilldown</strong></li>
+      <li><strong>Trend over time</strong> — grafik improvement</li>
+    </ul>
+  </section>
+
+  <!-- ===== 8. AI FEATURES ===== -->
+  <section class="s" id="ai">
+    <h2><span class="num">08</span> AI Features</h2>
+
+    <div class="modules">
+      <div class="module">
+        <div class="module-head">
+          <span class="title">AI Agent</span>
+          <span class="badge badge-ai">AI</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Conversational Compliance Assistant dengan function calling.</p>
+        <ul>
+          <li>Tool execution (create ROPA, update DPIA, list breach, dst) dengan approval gate</li>
+          <li>Multi-provider: OpenRouter, OpenAI, Anthropic, Gemini, Azure, DeepSeek, Groq</li>
+          <li>Credit metering per-token, per-feature</li>
+          <li>Streaming + voice TTS (Indonesian accent)</li>
+          <li>3D Avatar Mode (VRM) untuk kios</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">AI Auto-Fill</span>
+          <span class="badge badge-ai">AI</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Generate wizard ROPA/DPIA otomatis dari deskripsi natural language.</p>
+        <ul>
+          <li>Prompt-aware enumeration — output exact match ke opsi wizard</li>
+          <li>Tenant context injection</li>
+          <li>Chained flow: ROPA high-risk auto DPIA</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">AI Contract Review</span>
+          <span class="badge badge-ai">AI</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Analisis kontrak PDF/DOCX terhadap klausul PDP-critical.</p>
+        <ul>
+          <li>Upload → parse → report risk rendah/sedang/tinggi</li>
+          <li>Checklist DPA: liability, data residency, audit rights, breach SLA, subprocessor, termination</li>
+          <li>Diff terhadap template standar tenant</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">AI Policy Review</span>
+          <span class="badge badge-ai">AI</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Analisis SOP, Privacy Policy, T&C terhadap UU PDP.</p>
+        <ul>
+          <li>Upload policy → AI compliance gap report</li>
+          <li>Rekomendasi revisi klausul per-pasal UU PDP</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="title">AI Remediation Plan</span>
+          <span class="badge badge-ai">AI</span>
+        </div>
+        <p style="margin:0 0 8px 0; font-size: 13px; color: var(--muted);">Otomasi roadmap penutupan gap dari GAP Assessment.</p>
+        <ul>
+          <li>Input: jawaban "Belum"/"Sebagian" + konteks organisasi</li>
+          <li>Output: tahapan prioritas + estimasi effort + PIC recommendation + regulatory reference</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. DOCS & TEMPLATES ===== -->
+  <section class="s" id="docs">
+    <h2><span class="num">09</span> Dokumentasi & Templating</h2>
+
+    <h3>Document Templates (PDF + DOCX)</h3>
+    <ul>
+      <li><strong>10 preset styling</strong>: Corporate Classic, Government Formal, Modern Minimal, Dark Professional, Draft Watermark, Rounded Soft, Compact Tight, Academic Paper, Startup Vibrant, Legal Formal</li>
+      <li><strong>Customization penuh</strong>: primary/accent color, font, header/footer/logo, watermark, cover, margin, paper size, table style</li>
+      <li><strong>DOCX upload per-kind</strong> dengan placeholder catalog — tenant upload Word template sendiri</li>
+      <li><strong>Per-kind assignment</strong>: Template A ke ROPA, Template B ke Breach, dst. Fallback chain: kind-specific → default → system</li>
+      <li><strong>Nexus Canonical DOCX</strong> — template resmi dengan cover berlogo, footer, watermark, tabel rounded alternating, 5×5 risk matrix berwarna</li>
+      <li><strong>PhpWord engine</strong> dengan cloneRow + cloneBlock + flexible fallback</li>
+      <li><strong>3-template-per-tenant limit</strong> untuk custom</li>
+    </ul>
+
+    <h3>RACI Templates</h3>
+    <ul>
+      <li>CRUD + soft-delete + trash + restore</li>
+      <li><strong>Copy-on-write</strong> — edit system preset auto-fork ke tenant copy</li>
+      <li>Apply ke breach dengan 1 klik</li>
+    </ul>
+
+    <h3>Retention Policies</h3>
+    <ul>
+      <li>Duration (day/month/year/indefinite), trigger event, disposal method, legal basis</li>
+      <li><strong>In-use guard</strong> — tidak bisa delete kalau masih dipakai ROPA aktif</li>
+    </ul>
+
+    <h3>Knowledge Base</h3>
+    <ul>
+      <li>CMS internal untuk panduan kepatuhan</li>
+      <li>Sections tree, markdown editor</li>
+      <li>Pre-seeded panduan UU PDP per-pasal</li>
+    </ul>
+  </section>
+
+  <!-- ===== 10. ADMIN ===== -->
+  <section class="s" id="admin">
+    <h2><span class="num">10</span> Administrasi Platform</h2>
+
+    <div class="modules">
+      <div class="module">
+        <div class="module-head"><span class="title">User Management + Roles</span></div>
+        <ul>
+          <li>Hierarchical roles: root, superadmin, admin, DPO, maker, checker, auditor, reviewer, viewer</li>
+          <li>Per-module permissions dengan wildcard</li>
+          <li>Custom Tenant Roles (enterprise tier)</li>
+          <li>User invitation + onboarding flow</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">SSO (Enterprise)</span></div>
+        <ul>
+          <li>SAML 2.0</li>
+          <li>OIDC / OAuth2</li>
+          <li>Just-In-Time provisioning</li>
+          <li>Tenant-scoped IdP config</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Multi-Channel Notifications</span></div>
+        <ul>
+          <li>In-app bell, Email, Telegram, WhatsApp, Push</li>
+          <li>Kill switches multi-level (root → tenant → user)</li>
+          <li>Severity: info/warning/alert/critical</li>
+          <li>Digest mode daily/weekly</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Approval Workflow</span></div>
+        <ul>
+          <li>Multi-level (DPO → Direksi → Legal)</li>
+          <li>Parallel atau sequential</li>
+          <li>Reassign + delegation</li>
+          <li>Timeout escalation</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Audit Log</span></div>
+        <ul>
+          <li>Module + record level tracking</li>
+          <li>Human + AI actor differentiation</li>
+          <li>Soft-delete retention</li>
+          <li>Export CSV/JSON</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Branding (White-Label)</span></div>
+        <ul>
+          <li>Primary/accent palette</li>
+          <li>Custom logo (dashboard + favicon + cover + watermark)</li>
+          <li>Font family</li>
+          <li>Email sender override</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">License Manager</span></div>
+        <ul>
+          <li>5 tier: Basic, Professional, AI, AI Agent, Enterprise Perpetual</li>
+          <li>Feature gating per-tier</li>
+          <li>AI Credits metering</li>
+          <li>On-prem activation via license-manager microservice</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Menu Control</span></div>
+        <ul>
+          <li>Per-tenant enable/disable menu</li>
+          <li>Per-user reorder + favorites</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Custom Fields</span></div>
+        <ul>
+          <li>Tambah field per-modul tanpa migrasi (JSON column)</li>
+          <li>Type: text, number, date, select, multi-select, file</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Cloud Storage</span></div>
+        <ul>
+          <li>Per-tenant driver: S3, MinIO, DO Spaces, GCS, default disk</li>
+          <li>Credential encrypted (Crypt::encryptString)</li>
+          <li>Auto-fallback ke public disk kalau belum config</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">API Keys + Developer Hub</span></div>
+        <ul>
+          <li>Self-service API key generation</li>
+          <li>Per-key permission scope</li>
+          <li>Rate limit per-key</li>
+          <li>Usage dashboard + Swagger viewer</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="module-head"><span class="title">Tenant Offboarding</span></div>
+        <ul>
+          <li>Data export dalam 14 hari (GDPR/UU PDP)</li>
+          <li>Hard-delete certificate signed</li>
+          <li>Portability: JSON bundle + PDF summary</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 11. ENTERPRISE ===== -->
+  <section class="s" id="enterprise">
+    <h2><span class="num">11</span> Fitur Enterprise</h2>
+
+    <h3>Holding Dashboard</h3>
+    <ul>
+      <li><strong>Parent tenant</strong> punya visibility ke multiple child tenant</li>
+      <li><strong>Cross-tenant aggregated metrics</strong>: ROPA total, DPIA completion, DSR SLA, Breach frequency</li>
+      <li><strong>Consolidated compliance posture score</strong></li>
+      <li><strong>Per-child drilldown</strong></li>
+      <li><strong>Data isolation enforced</strong> — parent hanya read aggregates, tidak bisa lihat raw PII child</li>
+    </ul>
+
+    <h3>Document Import</h3>
+    <ul>
+      <li>Bulk import legacy ROPA/DPIA dari Excel/CSV/DOCX</li>
+      <li><strong>AI-assisted parsing</strong> untuk mapping kolom</li>
+      <li><strong>Validation + dry-run preview</strong> sebelum commit</li>
+    </ul>
+  </section>
+
+  <!-- ===== 12. ARCHITECTURE ===== -->
+  <section class="s" id="arch">
+    <h2><span class="num">12</span> Arsitektur Teknis Singkat</h2>
+    <div class="tags">
+      <span class="tag">Laravel 12</span>
+      <span class="tag">PHP 8.3</span>
+      <span class="tag">Sanctum Token Auth</span>
+      <span class="tag">PostgreSQL / MySQL</span>
+      <span class="tag">Redis Queue</span>
+      <span class="tag">Next.js 16</span>
+      <span class="tag">React 19</span>
+      <span class="tag">TypeScript strict</span>
+      <span class="tag">Turbopack</span>
+      <span class="tag">Docker Compose</span>
+      <span class="tag">nginx</span>
+      <span class="tag">OpenRouter · OpenAI · Anthropic · Gemini · Azure · DeepSeek · Groq</span>
+      <span class="tag">AES-256-CBC</span>
+      <span class="tag">org_id RLS-like</span>
+      <span class="tag">70+ idempotent migrations</span>
+    </div>
+    <ul style="margin-top: 18px;">
+      <li><strong>Backend</strong>: Laravel 12, Sanctum, idempotent migrations dengan MySQL/PG error-code guards</li>
+      <li><strong>Frontend</strong>: Next.js 16 App Router, React 19, vanilla CSS + variables untuk white-label</li>
+      <li><strong>Containerization</strong>: Docker Compose full stack (backend + frontend + DB + Redis + nginx)</li>
+      <li><strong>Security</strong>: EncryptedString cast pada kolom PII, Crypt::encryptString untuk credential, permission middleware per-route, rate-limited API</li>
+      <li><strong>Observability</strong>: AuditLog model, alert engine, Grafana-compatible logs, Telegram SOC hook</li>
+    </ul>
+  </section>
+
+  <!-- ===== 13. PERSONA ===== -->
+  <section class="s" id="persona">
+    <h2><span class="num">13</span> Persona Pengguna Utama</h2>
+    <table class="persona-table">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Aktivitas Utama di Platform</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>DPO</td><td>Kelola ROPA/DPIA, review DSR, lead breach response, approve high-risk, monitor compliance score</td></tr>
+        <tr><td>Legal Counsel</td><td>Review kontrak vendor, approve cross-border, draft policy via AI, sign completion certificate</td></tr>
+        <tr><td>Compliance Officer</td><td>Run GAP Assessment, build remediation plan, dokumentasi audit evidence, periodic reassessment</td></tr>
+        <tr><td>IT Security / CISO</td><td>Execute containment checklist, maintain data discovery schema registry, review RACI matrix, incident commander</td></tr>
+        <tr><td>Maker (Staff)</td><td>Isi wizard ROPA/DPIA, upload evidence, respond to assignment task</td></tr>
+        <tr><td>Auditor (Eksternal)</td><td>Read-only access, export report, verify audit trail</td></tr>
+        <tr><td>Subjek Data (Publik)</td><td>Submit DSR via embed form, review consent via Preference Center</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== 14. ROADMAP ===== -->
+  <section class="s" id="roadmap">
+    <h2><span class="num">14</span> Roadmap Terdekat</h2>
+    <div class="roadmap">
+      <div class="milestone shipped">
+        <span class="stat">✓ Shipped</span>
+        <span class="text"><strong>Phase H</strong> — Per-kind template assignment</span>
+      </div>
+      <div class="milestone shipped">
+        <span class="stat">✓ Shipped</span>
+        <span class="text"><strong>Phase G</strong> — RACI templates + editable matrix modal</span>
+      </div>
+      <div class="milestone shipped">
+        <span class="stat">✓ Shipped</span>
+        <span class="text"><strong>Phase F</strong> — ROPA create intent modal + Assign Group column</span>
+      </div>
+      <div class="milestone shipped">
+        <span class="stat">✓ Shipped</span>
+        <span class="text"><strong>Phase E</strong> — 7-step ROPA sync: risk calculator, multi-DPO/PIC/System, retention master, AI alignment, export</span>
+      </div>
+      <div class="milestone planning">
+        <span class="stat">🔄 Planning</span>
+        <span class="text"><strong>Phase K</strong> — DSR SQL Generator + Schema Registry + Split/Shard support</span>
+      </div>
+      <div class="milestone future">
+        <span class="stat">📅 Future</span>
+        <span class="text"><strong>Phase L</strong> — Advanced analytics (BI dashboard cross-module)</span>
+      </div>
+      <div class="milestone future">
+        <span class="stat">📅 Future</span>
+        <span class="text"><strong>Phase M</strong> — Mobile companion app (DSR intake + breach first responder)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 15. CONTACT ===== -->
+  <section id="contact">
+    <div class="contact-card">
+      <div class="contact-item">
+        <span class="label">Produk</span>
+        <span class="value">Privasimu Nexus</span>
+      </div>
+      <div class="contact-item">
+        <span class="label">Perusahaan</span>
+        <span class="value">PT Sentra Proteksi Data Teknologi Indonesia</span>
+      </div>
+      <div class="contact-item">
+        <span class="label">Sales</span>
+        <span class="value">sales@privasimu.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="label">Demo</span>
+        <span class="value">demo.privasimu.com</span>
+      </div>
+    </div>
+    <p class="footnote">Dokumen ini adalah snapshot kapabilitas platform per 23 April 2026. Fitur dan roadmap dapat berubah tanpa pemberitahuan terlebih dahulu.</p>
+  </section>
+
+</main>
+</div>
+
+</body>
+</html>
